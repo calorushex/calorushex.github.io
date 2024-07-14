@@ -152,6 +152,12 @@ svg {
   }
 }
 
+// a links under .backtotop have background colour of #0a0a0a
+.backtotop > a {
+  background-color: #0a0a0a !important  ;
+  color: white  !important;
+}
+
 hr {
   border-color: white !important;
   background-color: white !important;
