@@ -7,9 +7,9 @@ url: ''
 baseurl: 
 
 # Title of the Site
-title: Calorushex
+title: CJ Owens
 # Description of the Site
-description: A blog discussing security, technology, and other topics.
+description: A blog discussing security, ctfs, and challenge writeups.
 # URL of Image of the Site
 site-image: /assets/images/meta.jpg
 # Keywords of the Site
@@ -27,7 +27,7 @@ facebook_username:
 twitter_username: 
 instagram_username: 
 linkedin_username: 
-github_username: calorushex 
+github_username: calorushex
 youtube_channel_id: 
 reddit_username: /
 behance_username: /
@@ -39,11 +39,11 @@ google-analytics: G-7X2DC2DH3
 
 
 # Name of the Author
-author-name: calorushex
+author-name: CJ
 # URL for the Image of the Author
 author-image: https://i.pinimg.com/originals/e1/59/05/e159053bd6aba58d3fa474fb79b48cb5.gif
 # 60 Words About the Author
-author-about: Hi, my name is Chris. I work as a securirty analyst in finacial services.
+author-about: Hi, my name is CJ. I work as a securirty analyst in finacial services.
 # URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
 author-url: https://github.com/calorushex
 

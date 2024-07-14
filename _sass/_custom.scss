@@ -38,7 +38,7 @@ a:hover {
 }
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, strong {
-  text-decoration: underline;
+  //text-decoration: underline;
   color: white;
 }
 
@@ -136,4 +136,8 @@ h3 {
 
 svg {
   color: white !important;
+}
+
+.navbar-item strong {
+  text-decoration: none;
 }
