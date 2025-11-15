@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<section class="intro">
+    <h2 style="color: var(--matrix-green); font-size: 2rem; margin-bottom: 30px;">
+        WELCOME TO THE DIGITAL SHADOWS
+    </h2>
+    <p style="color: var(--text-secondary); font-size: 1.2rem; line-height: 1.8; margin-bottom: 50px;">
+        Exploring the depths of cybersecurity, one writeup at a time. 
+        Breaking boxes, reversing binaries, and documenting the journey through the matrix.
+    </p>
+</section>
+
+<section id="posts" class="posts-section">
+    <h2 style="color: var(--matrix-green); font-size: 2rem; margin-bottom: 40px; border-bottom: 2px solid var(--matrix-green); padding-bottom: 15px;">
+        RECENT TRANSMISSIONS
+    </h2>
+    
+    {% if site.posts.size > 0 %}
+    <ul class="posts-list">
+        {% for post in site.posts %}
+        <li class="post-item">
+            <h3 class="post-item-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <div class="post-item-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+                {% if post.tags %}
+                <span> • {{ post.tags | join: ", " }}</span>
+                {% endif %}
+            </div>
+            {% if post.excerpt %}
+            <div class="post-item-excerpt">
+                {{ post.excerpt | strip_html | truncatewords: 50 }}
+            </div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p style="color: var(--text-secondary); font-style: italic;">
+        No transmissions yet. The void is silent...
+    </p>
+    {% endif %}
+</section>

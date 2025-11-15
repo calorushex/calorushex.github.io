@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    
+    <header class="site-header">
+        <div class="container">
+            <div class="skull-logo">💀</div>
+            <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+            <p class="site-description">{{ site.description }}</p>
+            <nav class="site-nav">
+                <a href="{{ '/' | relative_url }}" class="nav-link">home</a>
+                <a href="{{ '/#posts' | relative_url }}" class="nav-link">archives</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-content">
+        <div class="container">
+            {{ content }}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }} | <span class="glitch">STAY IN THE SHADOWS</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Matrix rain effect
+        const canvas = document.querySelector('.matrix-bg');
+        // Minimal matrix effect for performance
+    </script>
+</body>
+</html>
