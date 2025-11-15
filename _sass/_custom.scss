@@ -42,9 +42,9 @@ a:hover {
   color: white;
 }
 
-code {
-  background-color: #393939;
-  color: white;
+code, pre {
+  background-color: #393939 !important;
+  color: white !important;
 }
 
 .credits {
