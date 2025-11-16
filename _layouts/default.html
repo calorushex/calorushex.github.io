@@ -6,14 +6,16 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
+    <link rel="icon" type="image/jpeg" href="{{ '/assets/images/skull.jpg' | relative_url }}">
 </head>
 <body>
     <div class="matrix-bg"></div>
     
     <header class="site-header">
         <div class="container">
-            <div class="skull-logo">💀</div>
+            <div class="skull-logo">
+                <img src="{{ '/assets/images/skull.jpg' | relative_url }}" alt="Skull" />
+            </div>
             <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
             <p class="site-description">{{ site.description }}</p>
             <nav class="site-nav">
@@ -35,10 +37,6 @@
         </div>
     </footer>
 
-    <script>
-        // Matrix rain effect
-        const canvas = document.querySelector('.matrix-bg');
-        // Minimal matrix effect for performance
-    </script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
