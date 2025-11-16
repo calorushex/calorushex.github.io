@@ -46,7 +46,7 @@ Determining the file name used by the malware for executing the second-stage pay
 
 **A:** 3435.dll
 
-Q4
+### Q4
 Identifying the shared directory on the remote server helps trace the resources targeted by the attacker. What is the name of the shared directory being accessed on the remote server?
 
 **A:** davwwwroot
