@@ -67,7 +67,7 @@ Executing the entry export function from that DLL
 
 Identifying the username under which the malicious process runs helps in assessing the compromised account and its potential impact. What is the username that the malicious process runs under?
 
-i![](/assets/images/Pasted image 20251109223200.png)
+![](/assets/images/Pasted image 20251109223200.png)
 
 The user can be acquired using the windows.getsids plugin along with the process id of the malicious process.
 
@@ -84,15 +84,11 @@ To get this you might either try dump the process and get the dump hash or try u
 
 Instead the easy solution was just to search for the file name. It's unique enough that google search could pop up some malware analysis reports.
 
-I found one on Any.run using this method which said it was StrelaStealer.
-
-<https://any.run/report/e19b6144d7da72a97f5468fade0ed971a798359ed2f1dcb1e5e28f2d6b540175/28ba4903-16e2-44b1-bcdc-2eb686ad3dcf>
-
+I found one on Any.run using this method which said it was [StrelaStealer](https://any.run/report/e19b6144d7da72a97f5468fade0ed971a798359ed2f1dcb1e5e28f2d6b540175/28ba4903-16e2-44b1-bcdc-2eb686ad3dcf).
 
 **StrelaStealer**
 
 ---
+
 I successfully completed Reveal Blue Team Lab at @CyberDefenders!
 <https://cyberdefenders.org/blueteam-ctf-challenges/achievements/0xC/reveal/>
-
-# CyberDefenders #CyberSecurity #BlueYard #BlueTeam #InfoSec #SOC #SOCAnalyst #DFIR #CCD #CyberDefender
