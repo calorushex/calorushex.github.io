@@ -429,12 +429,14 @@ body {
     padding: 20px;
     overflow-x: auto;
     margin: 0;
+    color: #ffffff; /* White text for code blocks */
 }
 
 .post-content pre code {
     background: transparent;
     border: none;
     padding: 0;
+    color: #ffffff; /* White text for code within pre blocks */
 }
 
 .post-content blockquote {
@@ -564,10 +566,16 @@ body {
 
 .highlight .c { color: #75715e; } /* Comment */
 .highlight .k { color: var(--primary-accent); } /* Keyword */
-.highlight .n { color: var(--text-primary); } /* Name */
+.highlight .n { color: #ffffff; } /* Name - white for readability */
 .highlight .s { color: var(--accent-purple); } /* String */
 .highlight .m { color: var(--accent-red); } /* Number */
 .highlight .o { color: var(--primary-accent-dim); } /* Operator */
+.highlight .na { color: #ffffff; } /* Name.Attribute */
+.highlight .nb { color: #ffffff; } /* Name.Builtin */
+.highlight .nc { color: var(--primary-accent); } /* Name.Class */
+.highlight .nf { color: #ffffff; } /* Name.Function */
+.highlight .nv { color: #ffffff; } /* Name.Variable */
+.highlight .nt { color: var(--primary-accent); } /* Name.Tag */
 
 /* ================================
    RESPONSIVE
