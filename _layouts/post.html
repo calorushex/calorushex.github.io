@@ -2,15 +2,17 @@
 layout: default
 ---
 
-<div class="post-container">
+<div class="post-layout">
     <!-- Table of Contents -->
     <aside class="toc-sidebar" id="toc-sidebar">
-        <div class="toc-wrapper">
-            <h3 class="toc-title">Contents</h3>
-            <nav id="toc" class="toc-nav"></nav>
-        </div>
+        <nav class="toc-wrapper">
+            <div class="toc-title">[ CONTENTS ]</div>
+            <ul id="toc" class="toc-list"></ul>
+        </nav>
     </aside>
 
+    <div class="post-wrapper">
+    <div class="container">
     <article class="post">
         <header class="post-header">
             <h1 class="post-title">{{ page.title }}</h1>
@@ -36,6 +38,8 @@ layout: default
             </div>
         </footer>
     </article>
+    </div>
+    </div>
 </div>
 
 <script>
@@ -50,8 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    let tocHTML = '<ul class="toc-list">';
-    
     headings.forEach((heading, index) => {
         const id = `heading-${index}`;
         heading.id = id;
@@ -59,27 +61,58 @@ document.addEventListener('DOMContentLoaded', function() {
         const text = heading.textContent;
         const className = level === 'h3' ? 'toc-item toc-item-h3' : 'toc-item';
         
-        tocHTML += `<li class="${className}"><a href="#${id}" class="toc-link" data-target="${id}">${text}</a></li>`;
+        const li = document.createElement('li');
+        li.className = className;
+        const a = document.createElement('a');
+        a.href = `#${id}`;
+        a.className = 'toc-link';
+        a.setAttribute('data-target', id);
+        a.textContent = text;
+        li.appendChild(a);
+        toc.appendChild(li);
     });
-    
-    tocHTML += '</ul>';
-    toc.innerHTML = tocHTML;
     
     // Scroll spy functionality
     const links = document.querySelectorAll('.toc-link');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                links.forEach(link => link.classList.remove('active'));
-                const activeLink = document.querySelector(`.toc-link[data-target="${entry.target.id}"]`);
-                if (activeLink) activeLink.classList.add('active');
+    let currentActive = null;
+    let ticking = false;
+    
+    function updateActiveLink() {
+        const scrollPos = window.scrollY + 200;
+        let current = '';
+        
+        // Find the heading that's currently in view
+        for (let i = headings.length - 1; i >= 0; i--) {
+            const heading = headings[i];
+            if (heading.offsetTop - 100 <= scrollPos) {
+                current = heading.id;
+                break;
             }
-        });
-    }, {
-        rootMargin: '-20% 0px -70% 0px'
+        }
+        
+        if (current && current !== currentActive) {
+            currentActive = current;
+            links.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.toc-link[data-target="${current}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+        ticking = false;
+    }
+    
+    // Throttled scroll event
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateActiveLink();
+            });
+            ticking = true;
+        }
     });
     
-    headings.forEach(heading => observer.observe(heading));
+    // Initial update
+    updateActiveLink();
     
     // Smooth scroll
     links.forEach(link => {
