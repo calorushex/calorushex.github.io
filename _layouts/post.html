@@ -2,16 +2,7 @@
 layout: default
 ---
 
-<div class="post-layout-inner">
-    <!-- Table of Contents -->
-    <aside class="toc-sidebar" id="toc-sidebar">
-        <nav class="toc-wrapper ox-hugo-toc toc">
-            <div class="toc-title">Table of Contents</div>
-            <ul id="toc" class="toc-list"></ul>
-        </nav>
-    </aside>
-
-    <article class="post">
+<article class="post">
         <header class="post-header">
             <h1 class="post-title">{{ page.title }}</h1>
             <div class="post-meta">
@@ -35,91 +26,4 @@ layout: default
                 {% endif %}
             </div>
         </footer>
-    </article>
-</div>
-
-<script>
-// Generate Table of Contents
-document.addEventListener('DOMContentLoaded', function() {
-    const content = document.querySelector('.post-content');
-    const toc = document.getElementById('toc');
-    const headings = content.querySelectorAll('h2, h3');
-    
-    if (headings.length === 0) {
-        document.getElementById('toc-sidebar').style.display = 'none';
-        return;
-    }
-    
-    headings.forEach((heading, index) => {
-        const id = `heading-${index}`;
-        heading.id = id;
-        const level = heading.tagName.toLowerCase();
-        const text = heading.textContent;
-        const className = level === 'h3' ? 'toc-item toc-item-h3' : 'toc-item';
-        
-        const li = document.createElement('li');
-        li.className = className;
-        const a = document.createElement('a');
-        a.href = `#${id}`;
-        a.className = 'toc-link';
-        a.setAttribute('data-target', id);
-        a.textContent = text;
-        li.appendChild(a);
-        toc.appendChild(li);
-    });
-    
-    // Scroll spy functionality
-    const links = document.querySelectorAll('.toc-link');
-    let currentActive = null;
-    let ticking = false;
-    
-    function updateActiveLink() {
-        const scrollPos = window.scrollY + 200;
-        let current = '';
-        
-        // Find the heading that's currently in view
-        for (let i = headings.length - 1; i >= 0; i--) {
-            const heading = headings[i];
-            if (heading.offsetTop - 100 <= scrollPos) {
-                current = heading.id;
-                break;
-            }
-        }
-        
-        if (current && current !== currentActive) {
-            currentActive = current;
-            links.forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`.toc-link[data-target="${current}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-        }
-        ticking = false;
-    }
-    
-    // Throttled scroll event
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                updateActiveLink();
-            });
-            ticking = true;
-        }
-    });
-    
-    // Initial update
-    updateActiveLink();
-    
-    // Smooth scroll
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('data-target');
-            const target = document.getElementById(targetId);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-});
-</script>
+</article>
