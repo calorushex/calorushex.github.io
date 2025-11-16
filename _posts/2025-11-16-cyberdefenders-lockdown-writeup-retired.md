@@ -11,7 +11,7 @@ tags:
 - writeup
 - networkforensics
 - malwareanalysis
-title: CyberDefenders - Lockdown Writeup - Retired
+title: CyberDefenders - Lockdown Writeup
 ---
 
 ## Scenario

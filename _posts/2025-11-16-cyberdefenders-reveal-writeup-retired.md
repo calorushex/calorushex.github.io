@@ -10,7 +10,7 @@ tags:
 - cyberdefenders
 - memoryforensics
 - writeup
-title: CyberDefenders - Reveal Writeup - Retired
+title: CyberDefenders - Reveal Writeup
 ---
 
 ## Scenario
