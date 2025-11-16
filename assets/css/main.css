@@ -518,6 +518,40 @@ body {
 }
 
 /* ================================
+   FLOATING HACKER TEXT
+   ================================ */
+
+.floating-hacker-text {
+    position: fixed;
+    left: -100%;
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--primary-accent);
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    animation: floatAcross linear forwards;
+}
+
+@keyframes floatAcross {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.15;
+    }
+    95% {
+        opacity: 0.15;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+/* ================================
    SYNTAX HIGHLIGHTING
    ================================ */
 

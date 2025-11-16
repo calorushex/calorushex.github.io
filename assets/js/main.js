@@ -1,50 +1,67 @@
 // Code block copy functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Streaming hacker code on sides
-    function generateHackerStream() {
-        const chars = '01';
-        const hexChars = '0123456789ABCDEF';
-        const symbols = ['0x', '>>', '<<', '&&', '||', '//', 'SYS', 'ERR', 'OK'];
+    // Floating hacker text across background
+    function createFloatingText() {
+        const commands = [
+            'nmap -sV 10.10.11.123',
+            'gobuster dir -u http://target.htb',
+            './exploit.sh',
+            'nc -lvnp 4444',
+            'sudo -l',
+            'cat /etc/passwd',
+            'find / -perm -4000 2>/dev/null',
+            'python3 -m http.server',
+            'ssh user@target.htb',
+            'curl http://10.10.11.123',
+            'grep -r "password"',
+            'chmod +x shell.sh',
+            './linpeas.sh',
+            'whoami && id',
+            'ps aux | grep root',
+            'netstat -tulpn',
+            'hydra -l admin -P pass.txt',
+            'sqlmap -u "http://target"',
+            'msfconsole',
+            'john --wordlist=rockyou.txt',
+            '>> ACCESS GRANTED',
+            '>> SYSTEM BREACH',
+            '>> EXPLOIT LOADED',
+            '>> ROOT SHELL',
+            '[+] VULNERABILITY FOUND',
+            '[*] SCANNING PORTS...',
+            '[!] FIREWALL DETECTED'
+        ];
         
-        let stream = '';
-        // Generate enough lines to fill the screen height
-        const lines = Math.ceil(window.innerHeight / 12) + 20; // 12px line height + extra
+        const span = document.createElement('span');
+        span.className = 'floating-hacker-text';
+        span.textContent = commands[Math.floor(Math.random() * commands.length)];
         
-        for (let i = 0; i < lines; i++) {
-            for (let j = 0; j < 6; j++) { // 6 chars per line
-                const rand = Math.random();
-                if (rand < 0.4) {
-                    stream += chars[Math.floor(Math.random() * chars.length)];
-                } else if (rand < 0.7) {
-                    stream += hexChars[Math.floor(Math.random() * hexChars.length)];
-                } else {
-                    const sym = symbols[Math.floor(Math.random() * symbols.length)];
-                    stream += sym.substring(0, 2);
-                }
-            }
-            stream += '\n';
-        }
-        return stream;
+        // Random vertical position
+        const top = Math.random() * 100;
+        span.style.top = top + '%';
+        
+        // Constant slow speed (60 seconds)
+        const duration = 60;
+        span.style.animationDuration = duration + 's';
+        
+        // Random delay
+        const delay = Math.random() * 5;
+        span.style.animationDelay = delay + 's';
+        
+        document.body.appendChild(span);
+        
+        // Remove after animation completes
+        setTimeout(() => {
+            span.remove();
+        }, (duration + delay) * 1000);
     }
     
-    const leftCode = document.querySelector('.left-code');
-    const rightCode = document.querySelector('.right-code');
+    // Create floating text periodically (every 8 seconds)
+    setInterval(createFloatingText, 100000);
     
-    if (leftCode && rightCode) {
-        leftCode.textContent = generateHackerStream();
-        rightCode.textContent = generateHackerStream();
-        
-        // Update streams occasionally
-        setInterval(() => {
-            leftCode.textContent = generateHackerStream();
-            rightCode.textContent = generateHackerStream();
-        }, 1000);
-        
-        // Regenerate on window resize
-        window.addEventListener('resize', () => {
-            leftCode.textContent = generateHackerStream();
-            rightCode.textContent = generateHackerStream();
-        });
+    // Create initial batch
+    for (let i = 0; i < 2; i++) {
+        setTimeout(createFloatingText, i * 2000);
     }
     
     // Add copy buttons to all code blocks
