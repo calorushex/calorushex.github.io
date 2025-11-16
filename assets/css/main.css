@@ -436,7 +436,7 @@ body {
     background: transparent;
     border: none;
     padding: 0;
-    color: #ffffff; /* White text for code within pre blocks */
+    color: #ffffff !important; /* Force white text for code within pre blocks */
 }
 
 .post-content blockquote {
@@ -562,6 +562,11 @@ body {
     border: 1px solid rgba(139, 0, 255, 0.2);
     border-left: 2px solid var(--primary-accent);
     padding-left: 5px;
+    color: #ffffff; /* Default white text for all code in highlights */
+}
+
+.highlight code {
+    color: #ffffff !important; /* Force white for code elements in syntax highlighting */
 }
 
 .highlight .c { color: #75715e; } /* Comment */
