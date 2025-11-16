@@ -85,6 +85,9 @@ Instead the easy solution was just to search for the file name. It's unique enou
 
 I found one on Any.run using this method which said it was StrelaStealer.
 
+<https://any.run/report/e19b6144d7da72a97f5468fade0ed971a798359ed2f1dcb1e5e28f2d6b540175/28ba4903-16e2-44b1-bcdc-2eb686ad3dcf>
+
+
 **StrelaStealer**
 
 ---
