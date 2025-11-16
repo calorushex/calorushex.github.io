@@ -252,6 +252,119 @@ body {
 }
 
 /* ================================
+   TABLE OF CONTENTS
+   ================================ */
+
+.post-container {
+    display: flex;
+    gap: 40px;
+    position: relative;
+}
+
+.toc-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.toc-wrapper {
+    position: sticky;
+    top: 20px;
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid var(--border-color);
+    border-left: 2px solid var(--primary-accent);
+    padding: 20px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.toc-title {
+    color: var(--primary-accent);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 8px;
+}
+
+.toc-item-h3 {
+    margin-left: 15px;
+    font-size: 0.9rem;
+}
+
+.toc-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.toc-link:hover {
+    color: var(--primary-accent);
+    border-left-color: var(--primary-accent);
+    background: rgba(139, 0, 255, 0.1);
+    padding-left: 15px;
+}
+
+.toc-link.active {
+    color: var(--primary-accent);
+    border-left-color: var(--primary-accent);
+    background: rgba(139, 0, 255, 0.15);
+    font-weight: bold;
+}
+
+.post {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 1024px) {
+    .post-container {
+        flex-direction: column;
+    }
+    
+    .toc-sidebar {
+        width: 100%;
+        order: -1;
+    }
+    
+    .toc-wrapper {
+        position: relative;
+        top: 0;
+        max-height: 300px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toc-wrapper {
+        max-height: 250px;
+        padding: 15px;
+    }
+    
+    .toc-title {
+        font-size: 1rem;
+    }
+    
+    .toc-link {
+        font-size: 0.85rem;
+        padding: 4px 8px;
+    }
+}
+
+/* ================================
    POST LISTING
    ================================ */
 
