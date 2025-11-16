@@ -367,6 +367,10 @@ body {
     margin-bottom: 20px;
 }
 
+.post-content strong {
+    color: var(--primary-accent);
+}
+
 .post-content a {
     color: var(--primary-accent);
     text-decoration: underline;
