@@ -30,31 +30,25 @@ vol.exe -f 192-reveal.dmp windows.pstree
 
 Identifying the name of the malicious process helps in understanding the nature of the attack. What is the name of the malicious process?
 
-### A
-
-**powershell.exe**
+**A:** powershell.exe
 
 ### Q2
 
 Knowing the parent process ID (PPID) of the malicious process aids in tracing the process hierarchy and understanding the attack flow. What is the parent PID of the malicious process?
 
-### A
-
-**4120**
+**A:** 4120
 
 ### Q3
 
 Determining the file name used by the malware for executing the second-stage payload is crucial for identifying subsequent malicious activities. What is the file name that the malware uses to execute the second-stage payload?
 
-### A
-
-**3435.dll**
+**A:** 3435.dll
 
 ### Q4
 
 Identifying the shared directory on the remote server helps trace the resources targeted by the attacker. What is the name of the shared directory being accessed on the remote server?
 
-**davwwwroot**
+**A:** davwwwroot
 
 ### Q5
 
@@ -67,9 +61,7 @@ Using rundll32.exe
 Loading a DLL from a remote WebDAV share (\\45.9.74.32@8888\davwwwroot\3435.dll)
 Executing the entry export function from that DLL
 
-### A
-
-**T1218.011**
+**A:** T1218.011
 
 ### Q6
 
@@ -83,9 +75,7 @@ The user can be acquired using the windows.getsids plugin along with the process
 vol.exe -f 192-Reveal.dmp windows.getsids --pid 3692
 ```
 
-### A
-
-**Elon**
+**A:** Elon
 
 ### Q7
 
@@ -97,9 +87,7 @@ Instead the easy solution was just to search for the file name. It's unique enou
 
 I found one on Any.run using this method which said it was [StrelaStealer](https://any.run/report/e19b6144d7da72a97f5468fade0ed971a798359ed2f1dcb1e5e28f2d6b540175/28ba4903-16e2-44b1-bcdc-2eb686ad3dcf).
 
-### A
-
-**StrelaStealer**
+**A:** StrelaStealer
 
 <br>
 
