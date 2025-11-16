@@ -88,8 +88,7 @@ I found one on Any.run using this method which said it was [StrelaStealer](https
 
 **A:** StrelaStealer
 
-<br>
 ---
 <br>
 I successfully completed Reveal Blue Team Lab at @CyberDefenders!
-https://cyberdefenders.org/blueteam-ctf-challenges/achievements/0xC/reveal/
+<https://cyberdefenders.org/blueteam-ctf-challenges/achievements/0xC/reveal/>
