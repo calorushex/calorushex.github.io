@@ -5,8 +5,8 @@
 
 :root {
     --bg-black: #0a0a0a;
-    --bg-dark: #121212;
-    --bg-darker: #1a1a1a;
+    --bg-dark: #1a1a1a;
+    --bg-darker: #2a2a2a;
     --matrix-green: rgb(85, 155, 31);
     --matrix-dim: rgb(70, 130, 25);
     --matrix-dark: rgb(55, 100, 20);
@@ -38,7 +38,61 @@
 
 body {
     font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
-    background: linear-gradient(to bottom, var(--bg-black), var(--bg-dark));
+    background: linear-gradient(180deg, 
+        #000000 0%, 
+        #000000 2%,
+        #000000 4%,
+        #010101 6%,
+        #010101 8%,
+        #010101 10%,
+        #020202 12%,
+        #020202 14%,
+        #020202 16%,
+        #030303 18%,
+        #030303 20%,
+        #030303 22%,
+        #040404 24%,
+        #040404 26%,
+        #040404 28%,
+        #050505 30%,
+        #050505 32%,
+        #050505 34%,
+        #060606 36%,
+        #060606 38%,
+        #060606 40%,
+        #070707 42%,
+        #070707 44%,
+        #070707 46%,
+        #080808 48%,
+        #080808 50%,
+        #080808 52%,
+        #090909 54%,
+        #090909 56%,
+        #090909 58%,
+        #080808 60%,
+        #080808 62%,
+        #080808 64%,
+        #070707 66%,
+        #070707 68%,
+        #070707 70%,
+        #060606 72%,
+        #060606 74%,
+        #060606 76%,
+        #050505 78%,
+        #050505 80%,
+        #050505 82%,
+        #040404 84%,
+        #040404 86%,
+        #040404 88%,
+        #030303 90%,
+        #030303 92%,
+        #020202 94%,
+        #020202 96%,
+        #010101 98%,
+        #000000 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
     color: var(--text-primary);
     line-height: 1.6;
     position: relative;
@@ -95,7 +149,7 @@ body {
     z-index: 10;
     padding: 60px 0 40px;
     text-align: center;
-    border-bottom: 2px solid var(--primary-accent);
+    border-bottom: none;
     background: transparent;
 }
 
@@ -252,38 +306,20 @@ body {
    ================================ */
 
 .post {
-    background: var(--bg-darker);
-    border: 1px solid var(--border-color);
-    padding: 50px;
+    background: transparent;
+    border: none;
+    padding: 0;
     margin-bottom: 40px;
     position: relative;
 }
 
 .post::before,
 .post::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary-accent);
-}
-
-.post::before {
-    top: 0;
-    left: 0;
-    border-right: none;
-    border-bottom: none;
-}
-
-.post::after {
-    top: 0;
-    right: 0;
-    border-left: none;
-    border-bottom: none;
+    display: none;
 }
 
 .post-header {
-    border-bottom: 2px solid var(--primary-accent);
+    border-bottom: none;
     padding-bottom: 30px;
     margin-bottom: 40px;
 }
@@ -470,8 +506,8 @@ body {
     z-index: 10;
     text-align: center;
     padding: 40px 0;
-    border-top: 2px solid var(--primary-accent);
-    background: var(--bg-dark);
+    border-top: none;
+    background: transparent;
     color: var(--text-secondary);
 }
 

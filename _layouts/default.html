@@ -6,6 +6,7 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="shortcut icon" type="image/jpeg" href="{{ '/assets/images/skull.jpg' | relative_url }}">
     <link rel="icon" type="image/jpeg" href="{{ '/assets/images/skull.jpg' | relative_url }}">
 </head>
 <body>
@@ -18,10 +19,11 @@
             </div>
             <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
             <p class="site-description">{{ site.description }}</p>
+            {% if page.layout == 'post' %}
             <nav class="site-nav">
                 <a href="{{ '/' | relative_url }}" class="nav-link">home</a>
-                <a href="{{ '/#posts' | relative_url }}" class="nav-link">archives</a>
             </nav>
+            {% endif %}
         </div>
     </header>
 
