@@ -14,9 +14,16 @@
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --accent-purple: #8b00ff;
+    --accent-purple-dim: #7000cc;
+    --accent-purple-dark: #5500aa;
     --accent-red: #ff0040;
     --accent-gold: #ffd700;
     --border-color: #333;
+    
+    /* Primary accent color - switch between green and purple */
+    --primary-accent: var(--accent-purple);
+    --primary-accent-dim: var(--accent-purple-dim);
+    --primary-accent-dark: var(--accent-purple-dark);
 }
 
 /* ================================
@@ -31,47 +38,29 @@
 
 body {
     font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
-    background: var(--bg-black);
+    background: linear-gradient(to bottom, var(--bg-black), var(--bg-dark));
     color: var(--text-primary);
     line-height: 1.6;
     position: relative;
     overflow-x: hidden;
 }
 
-/* Tech borders on sides */
-body::before,
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    width: 60px;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 10px,
-        rgba(85, 155, 31, 0.1) 10px,
-        rgba(85, 155, 31, 0.1) 11px
-    );
-    border: 1px solid rgba(85, 155, 31, 0.2);
-    pointer-events: none;
-    z-index: 1;
-}
-
-body::before {
-    left: 0;
-    border-right: 2px solid rgba(85, 155, 31, 0.3);
-}
-
-body::after {
-    right: 0;
-    border-left: 2px solid rgba(85, 155, 31, 0.3);
-}
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 80px;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
 }
 
 /* ================================
@@ -106,8 +95,8 @@ body::after {
     z-index: 10;
     padding: 60px 0 40px;
     text-align: center;
-    border-bottom: 2px solid var(--matrix-green);
-    background: linear-gradient(to bottom, var(--bg-black), var(--bg-dark));
+    border-bottom: 2px solid var(--primary-accent);
+    background: transparent;
 }
 
 .site-header::before,
@@ -116,7 +105,7 @@ body::after {
     position: absolute;
     top: 20px;
     font-size: 0.7rem;
-    color: var(--matrix-dark);
+    color: var(--primary-accent-dark);
     letter-spacing: 2px;
     font-family: 'Courier New', monospace;
 }
@@ -134,35 +123,35 @@ body::after {
 .skull-logo {
     font-size: 4rem;
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 20px var(--matrix-green));
+    filter: drop-shadow(0 0 20px var(--primary-accent));
 }
 
 .skull-logo img {
     width: 150px;
     height: auto;
     border-radius: 50%;
-    border: 3px solid var(--matrix-green);
-    box-shadow: 0 0 20px var(--matrix-green);
+    border: 3px solid var(--primary-accent);
+    box-shadow: 0 0 20px var(--primary-accent);
 }
 
 .site-title a {
     font-size: 3rem;
     font-weight: bold;
-    color: var(--matrix-green);
+    color: var(--primary-accent);
     text-decoration: none;
     text-shadow: 
-        0 0 10px var(--matrix-green),
-        0 0 20px var(--matrix-green),
-        0 0 30px var(--matrix-dark);
+        0 0 10px var(--primary-accent),
+        0 0 20px var(--primary-accent),
+        0 0 30px var(--primary-accent-dark);
     letter-spacing: 8px;
     transition: all 0.3s ease;
 }
 
 .site-title a:hover {
     text-shadow: 
-        0 0 20px var(--matrix-green),
-        0 0 40px var(--matrix-green),
-        0 0 60px var(--matrix-dark);
+        0 0 20px var(--primary-accent),
+        0 0 40px var(--primary-accent),
+        0 0 60px var(--primary-accent-dark);
 }
 
 .site-description {
@@ -178,23 +167,23 @@ body::after {
 }
 
 .nav-link {
-    color: var(--matrix-dim);
+    color: var(--primary-accent-dim);
     text-decoration: none;
     margin: 0 20px;
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border: 1px solid var(--matrix-dark);
+    border: 1px solid var(--primary-accent-dark);
     padding: 10px 20px;
     display: inline-block;
     transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    background: var(--matrix-green);
+    background: var(--primary-accent);
     color: var(--bg-black);
-    border-color: var(--matrix-green);
-    box-shadow: 0 0 20px var(--matrix-green);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 20px var(--primary-accent);
 }
 
 /* ================================
@@ -219,7 +208,7 @@ body::after {
 .post-item {
     background: var(--bg-darker);
     border: 1px solid var(--border-color);
-    border-left: 4px solid var(--matrix-green);
+    border-left: 4px solid var(--primary-accent);
     padding: 30px;
     margin-bottom: 30px;
     transition: all 0.3s ease;
@@ -227,7 +216,7 @@ body::after {
 
 .post-item:hover {
     border-left-width: 8px;
-    box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 30px rgba(139, 0, 255, 0.3);
     transform: translateX(5px);
 }
 
@@ -237,14 +226,14 @@ body::after {
 }
 
 .post-item-title a {
-    color: var(--matrix-green);
+    color: var(--primary-accent);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .post-item-title a:hover {
-    color: var(--matrix-dim);
-    text-shadow: 0 0 10px var(--matrix-green);
+    color: var(--primary-accent-dim);
+    text-shadow: 0 0 10px var(--primary-accent);
 }
 
 .post-item-meta {
@@ -276,7 +265,7 @@ body::after {
     position: absolute;
     width: 20px;
     height: 20px;
-    border: 2px solid var(--matrix-green);
+    border: 2px solid var(--primary-accent);
 }
 
 .post::before {
@@ -294,16 +283,16 @@ body::after {
 }
 
 .post-header {
-    border-bottom: 2px solid var(--matrix-green);
+    border-bottom: 2px solid var(--primary-accent);
     padding-bottom: 30px;
     margin-bottom: 40px;
 }
 
 .post-title {
     font-size: 2.5rem;
-    color: var(--matrix-green);
+    color: var(--primary-accent);
     margin-bottom: 15px;
-    text-shadow: 0 0 10px var(--matrix-dark);
+    text-shadow: 0 0 10px var(--primary-accent-dark);
 }
 
 .post-meta {
@@ -312,7 +301,7 @@ body::after {
 }
 
 .post-meta time {
-    color: var(--matrix-dim);
+    color: var(--primary-accent-dim);
 }
 
 .post-meta .tags {
@@ -325,15 +314,15 @@ body::after {
 }
 
 .post-content h2 {
-    color: var(--matrix-green);
+    color: var(--primary-accent);
     font-size: 2rem;
     margin: 50px 0 20px;
-    border-left: 4px solid var(--matrix-green);
+    border-left: 4px solid var(--primary-accent);
     padding-left: 20px;
 }
 
 .post-content h3 {
-    color: var(--matrix-dim);
+    color: var(--primary-accent-dim);
     font-size: 1.5rem;
     margin: 40px 0 15px;
 }
@@ -343,23 +332,23 @@ body::after {
 }
 
 .post-content a {
-    color: var(--matrix-green);
+    color: var(--primary-accent);
     text-decoration: underline;
     transition: color 0.3s ease;
 }
 
 .post-content a:hover {
-    color: var(--matrix-dim);
-    text-shadow: 0 0 5px var(--matrix-green);
+    color: var(--primary-accent-dim);
+    text-shadow: 0 0 5px var(--primary-accent);
 }
 
 .post-content code {
     background: var(--bg-black);
-    color: var(--matrix-green);
+    color: var(--primary-accent);
     padding: 2px 6px;
     border-radius: 3px;
     font-family: 'Courier New', monospace;
-    border: 1px solid var(--matrix-dark);
+    border: 1px solid var(--primary-accent-dark);
 }
 
 /* Code block wrapper */
@@ -370,37 +359,37 @@ body::after {
 
 .copy-button {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: var(--bg-darker);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    padding: 4px 10px;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: var(--primary-accent);
+    border: 1px solid var(--primary-accent-dark);
+    padding: 6px 12px;
     font-family: 'Courier New', monospace;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     cursor: pointer;
-    border-radius: 4px;
     transition: all 0.2s ease;
     z-index: 10;
-    opacity: 0.7;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .copy-button:hover {
     opacity: 1;
-    background: var(--matrix-dark);
-    color: var(--matrix-green);
-    border-color: var(--matrix-green);
+    background: rgba(139, 0, 255, 0.1);
+    border-color: var(--primary-accent);
 }
 
 .copy-button.copied {
-    color: var(--matrix-green);
-    border-color: var(--matrix-green);
+    opacity: 1;
+    background: rgba(139, 0, 255, 0.2);
+    border-color: var(--primary-accent);
 }
 
 .post-content pre {
-    background: var(--bg-black);
-    border: 1px solid var(--matrix-dark);
-    border-left: 4px solid var(--matrix-green);
+    background: transparent;
+    border: none;
     padding: 20px;
     overflow-x: auto;
     margin: 0;
@@ -434,7 +423,7 @@ body::after {
     height: auto;
     display: block;
     margin: 30px auto;
-    border: 2px solid var(--matrix-dark);
+    border: 2px solid var(--primary-accent-dark);
 }
 
 /* ================================
@@ -455,10 +444,10 @@ body::after {
 
 .prev-post,
 .next-post {
-    color: var(--matrix-dim);
+    color: var(--primary-accent-dim);
     text-decoration: none;
     padding: 15px 25px;
-    border: 1px solid var(--matrix-dark);
+    border: 1px solid var(--primary-accent-dark);
     flex: 1;
     text-align: center;
     transition: all 0.3s ease;
@@ -466,10 +455,10 @@ body::after {
 
 .prev-post:hover,
 .next-post:hover {
-    background: var(--matrix-green);
+    background: var(--primary-accent);
     color: var(--bg-black);
-    border-color: var(--matrix-green);
-    box-shadow: 0 0 20px var(--matrix-green);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 20px var(--primary-accent);
 }
 
 /* ================================
@@ -481,13 +470,13 @@ body::after {
     z-index: 10;
     text-align: center;
     padding: 40px 0;
-    border-top: 2px solid var(--matrix-green);
+    border-top: 2px solid var(--primary-accent);
     background: var(--bg-dark);
     color: var(--text-secondary);
 }
 
 .glitch {
-    color: var(--matrix-green);
+    color: var(--primary-accent);
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -497,15 +486,18 @@ body::after {
    ================================ */
 
 .highlight {
-    background: var(--bg-black) !important;
+    background: rgba(18, 18, 18, 0.5) !important;
+    border: 1px solid rgba(139, 0, 255, 0.2);
+    border-left: 2px solid var(--primary-accent);
+    padding-left: 5px;
 }
 
 .highlight .c { color: #75715e; } /* Comment */
-.highlight .k { color: var(--matrix-green); } /* Keyword */
+.highlight .k { color: var(--primary-accent); } /* Keyword */
 .highlight .n { color: var(--text-primary); } /* Name */
 .highlight .s { color: var(--accent-purple); } /* String */
 .highlight .m { color: var(--accent-red); } /* Number */
-.highlight .o { color: var(--matrix-dim); } /* Operator */
+.highlight .o { color: var(--primary-accent-dim); } /* Operator */
 
 /* ================================
    RESPONSIVE
@@ -513,28 +505,43 @@ body::after {
 
 @media (max-width: 768px) {
     .site-title a {
-        font-size: 2rem;
-        letter-spacing: 4px;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
     }
     
-    .skull-logo {
-        font-size: 3rem;
+    .skull-logo img {
+        width: 100px;
     }
     
     .post {
-        padding: 30px 20px;
+        padding: 20px 15px;
     }
     
     .post-title {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     
     .nav-link {
         display: block;
-        margin: 10px 0;
+        margin: 10px auto;
+        max-width: 200px;
     }
     
     .post-nav {
         flex-direction: column;
+    }
+    
+    .site-header::before,
+    .site-header::after {
+        font-size: 0.6rem;
+        top: 10px;
+    }
+    
+    .site-header::before {
+        left: 10px;
+    }
+    
+    .site-header::after {
+        right: 10px;
     }
 }

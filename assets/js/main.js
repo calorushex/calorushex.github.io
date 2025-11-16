@@ -1,6 +1,53 @@
 // Code block copy functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Target only the outermost code containers
+    // Streaming hacker code on sides
+    function generateHackerStream() {
+        const chars = '01';
+        const hexChars = '0123456789ABCDEF';
+        const symbols = ['0x', '>>', '<<', '&&', '||', '//', 'SYS', 'ERR', 'OK'];
+        
+        let stream = '';
+        // Generate enough lines to fill the screen height
+        const lines = Math.ceil(window.innerHeight / 12) + 20; // 12px line height + extra
+        
+        for (let i = 0; i < lines; i++) {
+            for (let j = 0; j < 6; j++) { // 6 chars per line
+                const rand = Math.random();
+                if (rand < 0.4) {
+                    stream += chars[Math.floor(Math.random() * chars.length)];
+                } else if (rand < 0.7) {
+                    stream += hexChars[Math.floor(Math.random() * hexChars.length)];
+                } else {
+                    const sym = symbols[Math.floor(Math.random() * symbols.length)];
+                    stream += sym.substring(0, 2);
+                }
+            }
+            stream += '\n';
+        }
+        return stream;
+    }
+    
+    const leftCode = document.querySelector('.left-code');
+    const rightCode = document.querySelector('.right-code');
+    
+    if (leftCode && rightCode) {
+        leftCode.textContent = generateHackerStream();
+        rightCode.textContent = generateHackerStream();
+        
+        // Update streams occasionally
+        setInterval(() => {
+            leftCode.textContent = generateHackerStream();
+            rightCode.textContent = generateHackerStream();
+        }, 1000);
+        
+        // Regenerate on window resize
+        window.addEventListener('resize', () => {
+            leftCode.textContent = generateHackerStream();
+            rightCode.textContent = generateHackerStream();
+        });
+    }
+    
+    // Add copy buttons to all code blocks
     const codeBlocks = document.querySelectorAll('div.highlight');
     
     // If no highlight divs (plain markdown code blocks), fall back to pre elements
