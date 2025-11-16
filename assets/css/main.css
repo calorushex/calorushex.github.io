@@ -257,9 +257,9 @@ body {
 
 .post-layout {
     display: flex;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 80px;
     gap: 40px;
     align-items: flex-start;
 }
@@ -364,13 +364,13 @@ body {
     }
     
     .post-layout {
-        padding: 0;
+        padding: 0 40px;
     }
 }
 
 @media (max-width: 768px) {
     .post-layout {
-        padding: 0 10px;
+        padding: 0 20px;
     }
 }
 
@@ -380,9 +380,9 @@ body {
 
 .home-layout {
     display: flex;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 80px;
     gap: 40px;
     align-items: flex-start;
 }
@@ -504,13 +504,13 @@ body {
     }
     
     .home-layout {
-        padding: 0;
+        padding: 0 40px;
     }
 }
 
 @media (max-width: 768px) {
     .home-layout {
-        padding: 0 10px;
+        padding: 0 20px;
     }
 }
 
