@@ -2,6 +2,29 @@
 layout: default
 ---
 
+<div class="home-layout">
+    <!-- Search Sidebar -->
+    <aside class="search-sidebar">
+        <div class="search-wrapper">
+            <div class="search-title">Search Posts</div>
+            
+            <!-- Search Input -->
+            <div class="search-input-wrapper">
+                <input type="text" id="post-search" class="search-input" placeholder="Search posts..." />
+            </div>
+            
+            <!-- Tag Filter -->
+            <div class="tag-filter-section">
+                <div class="tag-filter-title">Filter by Tag</div>
+                <div id="tag-list" class="tag-list"></div>
+            </div>
+            
+            <!-- Results Count -->
+            <div id="results-count" class="results-count"></div>
+        </div>
+    </aside>
+
+    <div class="home-content">
 <section class="intro">
     <h2 style="color: var(--primary-accent); font-size: 2rem; margin-bottom: 30px;">
         WELCOME TO MY BLOG OF WRITEUPS, RESEARCH, AND THOUGHTS
@@ -43,3 +66,110 @@ layout: default
     </p>
     {% endif %}
 </section>
+    </div>
+</div>
+
+<script>
+// Search and Filter Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const posts = [
+        {% for post in site.posts %}
+        {
+            title: {{ post.title | jsonify }},
+            url: {{ post.url | relative_url | jsonify }},
+            date: {{ post.date | date: "%B %d, %Y" | jsonify }},
+            tags: {{ post.tags | jsonify }},
+            excerpt: {{ post.excerpt | strip_html | truncatewords: 50 | jsonify }},
+            element: null
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    ];
+    
+    const searchInput = document.getElementById('post-search');
+    const tagList = document.getElementById('tag-list');
+    const resultsCount = document.getElementById('results-count');
+    const postItems = document.querySelectorAll('.post-item');
+    
+    // Store references to DOM elements
+    postItems.forEach((item, index) => {
+        if (posts[index]) posts[index].element = item;
+    });
+    
+    // Extract all unique tags
+    const allTags = new Set();
+    posts.forEach(post => {
+        if (post.tags) post.tags.forEach(tag => allTags.add(tag));
+    });
+    
+    // Create tag buttons
+    const sortedTags = Array.from(allTags).sort();
+    let activeTags = new Set();
+    
+    sortedTags.forEach(tag => {
+        const tagBtn = document.createElement('button');
+        tagBtn.className = 'tag-btn';
+        tagBtn.textContent = tag;
+        tagBtn.addEventListener('click', () => {
+            if (activeTags.has(tag)) {
+                activeTags.delete(tag);
+                tagBtn.classList.remove('active');
+            } else {
+                activeTags.add(tag);
+                tagBtn.classList.add('active');
+            }
+            filterPosts();
+        });
+        tagList.appendChild(tagBtn);
+    });
+    
+    // Fuzzy search function
+    function fuzzyMatch(str, pattern) {
+        str = str.toLowerCase();
+        pattern = pattern.toLowerCase();
+        let patternIdx = 0;
+        
+        for (let i = 0; i < str.length; i++) {
+            if (str[i] === pattern[patternIdx]) {
+                patternIdx++;
+            }
+            if (patternIdx === pattern.length) return true;
+        }
+        return patternIdx === pattern.length;
+    }
+    
+    // Filter posts
+    function filterPosts() {
+        const searchTerm = searchInput.value.trim();
+        let visibleCount = 0;
+        
+        posts.forEach(post => {
+            let show = true;
+            
+            // Check search term
+            if (searchTerm && !fuzzyMatch(post.title, searchTerm)) {
+                show = false;
+            }
+            
+            // Check tags
+            if (activeTags.size > 0) {
+                const hasTag = post.tags && post.tags.some(tag => activeTags.has(tag));
+                if (!hasTag) show = false;
+            }
+            
+            if (post.element) {
+                post.element.style.display = show ? 'block' : 'none';
+                if (show) visibleCount++;
+            }
+        });
+        
+        // Update results count
+        resultsCount.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''} found`;
+    }
+    
+    // Search input handler
+    searchInput.addEventListener('input', filterPosts);
+    
+    // Initial count
+    resultsCount.textContent = `${posts.length} post${posts.length !== 1 ? 's' : ''}`;
+});
+</script>
