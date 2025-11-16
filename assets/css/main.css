@@ -257,6 +257,7 @@ body {
 
 .post-layout {
     display: flex;
+    max-width: 75%;
     margin: 0 auto;
     padding: 0 40px;
     gap: 40px;
@@ -379,6 +380,7 @@ body {
 
 .home-layout {
     display: flex;
+    max-width: 75%;
     margin: 0 auto;
     padding: 0 40px;
     gap: 40px;
