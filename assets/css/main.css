@@ -265,7 +265,7 @@ body {
 }
 
 .toc-sidebar {
-    width: 250px;
+    width: 280px;
     flex-shrink: 0;
     position: sticky;
     top: 20px;
@@ -273,31 +273,35 @@ body {
 }
 
 .toc-wrapper {
-    background: transparent;
-    border-left: 2px solid var(--primary-accent);
-    padding-left: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(139, 0, 255, 0.3);
+    border-radius: 4px;
+    padding: 20px;
     overflow-y: auto;
     max-height: calc(100vh - 60px);
 }
 
 .toc-wrapper::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
 }
 
 .toc-wrapper::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .toc-wrapper::-webkit-scrollbar-thumb {
     background: var(--primary-accent-dark);
+    border-radius: 3px;
 }
 
 .toc-title {
     color: var(--primary-accent);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     margin-bottom: 15px;
-    letter-spacing: 2px;
-    font-weight: normal;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(139, 0, 255, 0.2);
+    letter-spacing: 1px;
+    font-weight: bold;
 }
 
 .toc-list {
@@ -307,11 +311,11 @@ body {
 }
 
 .toc-item {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .toc-item-h3 {
-    margin-left: 15px;
+    margin-left: 20px;
     font-size: 0.85rem;
 }
 
@@ -319,19 +323,22 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
     display: block;
-    padding: 4px 0;
-    transition: color 0.2s ease;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    padding: 5px 8px;
+    transition: all 0.2s ease;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    border-radius: 3px;
 }
 
 .toc-link:hover {
-    color: var(--primary-accent-dim);
+    color: var(--primary-accent);
+    background: rgba(139, 0, 255, 0.1);
 }
 
 .toc-link.active {
     color: var(--primary-accent);
-    font-weight: bold;
+    background: rgba(139, 0, 255, 0.15);
+    font-weight: 600;
 }
 
 .post-wrapper {
@@ -344,42 +351,20 @@ body {
     max-width: none;
 }
 
-/* Mobile responsive */
+/* Hide TOC on smaller screens */
 @media (max-width: 1024px) {
-    .post-layout {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
     .toc-sidebar {
-        width: 100%;
-        position: relative;
-        top: 0;
-        order: -1;
-        max-height: 300px;
+        display: none;
     }
     
-    .toc-wrapper {
-        max-height: 250px;
+    .post-layout {
+        padding: 0;
     }
 }
 
 @media (max-width: 768px) {
     .post-layout {
         padding: 0 10px;
-    }
-    
-    .toc-wrapper {
-        max-height: 200px;
-        padding-left: 15px;
-    }
-    
-    .toc-title {
-        font-size: 0.8rem;
-    }
-    
-    .toc-link {
-        font-size: 0.85rem;
     }
 }
 
